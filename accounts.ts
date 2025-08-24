@@ -15,3 +15,4 @@ export const accounts = [
     funds: 100,
   },
 ];
+// http://localhost:8000/accounts/Omar?currency=usd
