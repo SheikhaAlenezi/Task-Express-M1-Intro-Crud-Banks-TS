@@ -2,6 +2,7 @@ export interface Account {
   id: number;
   username: string;
   funds: number;
+  currency?: string;
 }
 export const accounts: Account[] = [
   {
