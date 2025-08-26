@@ -59,24 +59,24 @@ export const updateAccount = async (req: Request, res: Response) => {
   }
 };
 
-// export const getAccountByUsername = async (req: Request, res: Response) => {
-//   try {
-//     const username = req.params.username;
-//     const currency = req.query.currency;
-//     const account = await Account.findOne({ username });
+export const getAccountByUsername = async (req: Request, res: Response) => {
+  try {
+    const username = req.params.username;
+    const currency = req.query.currency;
+    const account = await Account.findOne({ username });
 
-//     if (!account) {
-//       return res.status(404).json({ error: "account not found" });
-//     }
-//     let responseAccount = account.toObject();
+    if (!account) {
+      return res.status(404).json({ error: "account not found" });
+    }
+    let responseAccount = account.toObject();
 
-//     if (currency === "usd") {
-//       responseAccount.funds = +(account.funds * 3.25).toFixed(2);
-//       responseAccount.currency = "USD";
-//     }
-//     res.status(200).json(responseAccount);
-//   } catch (error) {
-//     console.error("error fetching account:", error);
-//     res.status(500).json({ error: "failed to fetch account" });
-//   }
-// };
+    if (currency === "usd") {
+      responseAccount.funds = +(account.funds * 3.25).toFixed(2);
+      responseAccount.currency = "USD";
+    }
+    res.status(200).json(responseAccount);
+  } catch (error) {
+    console.error("error fetching account:", error);
+    res.status(500).json({ error: "failed to fetch account" });
+  }
+};

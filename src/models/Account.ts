@@ -5,7 +5,7 @@ const AccountSchema = new Schema(
     // id: { type: Number },
     username: { type: String, required: true, unique: true },
     funds: { type: Number, default: 0 },
-    // currency: { type: String, required: "USD" },
+    currency: { type: String, default: "USD" },
     isAvailable: { type: Boolean, default: true },
   },
   {
