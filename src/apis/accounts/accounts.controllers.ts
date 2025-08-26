@@ -80,3 +80,18 @@ export const getAccountByUsername = async (req: Request, res: Response) => {
     res.status(500).json({ error: "failed to fetch account" });
   }
 };
+
+export const getVipAccount = async (req: Request, res: Response) => {
+  try {
+    const amountParam = req.query.amount;
+    const amount = Number(amountParam);
+    if (!amount || amount < 0) {
+      return res.status(400).json({ error: "invalid amount" });
+    }
+    const vipAccount = await Account.find({ funds: { $gt: amount } });
+    res.status(200).json(vipAccount);
+  } catch (error) {
+    console.log("error VIP account", error);
+    res.status(500).json({ error: "failed to fetch VIP" });
+  }
+};
